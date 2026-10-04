@@ -1,0 +1,7 @@
+per salvare il prgetto aggiornato su GitHub fai
+-git status
+-git add .
+-git commit -m "con commento"
+-git push
+
+//poi vedro descriverò anche altro
