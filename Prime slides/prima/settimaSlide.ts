@@ -51,7 +51,33 @@ for(let i: number = 0; i<a.length; i++){
 }*/
 
 
-
+/*Si scriva un programma per gestire un inventario, formato da un insieme di 
+coppie prodotto-quantità. Tali coppie vengono lette da tastiera, fino a quando 
+l’utente inserisce “stop” come nome del prodotto. Stampare la lista dei prodotti 
+inventariati, con le rispettive quantità, su una sola riga. */
+type prodotti = [string,number]
+let prod:string = String(prompt("scegli un prodotto o stop"))
+let inv: prodotti[] = []
+while(prod!=="stop"){
+    let quantita: number = Number(prompt("scegli un numero"))
+    let prodotto:prodotti = [prod,quantita]
+    let prodottoPresente: boolean = false
+    for(let i:number = 0;i<inv.length;i++){
+        if(inv[i][0]===prodotto[0]){
+            prodottoPresente = true 
+            inv[i][1] = inv[i][1] + quantita
+        }
+    }
+    if(!prodottoPresente){
+        inv.push(prodotto)
+    } 
+    prod = String(prompt("scegli un prodotto"))
+}
+let inventario: string = ""
+for(let k of inv){
+    inventario = inventario===""? inventario + "("+`${k[0]}`+","+`${k[1]}`+")":inventario + " " + "("+`${k[0]}`+","+`${k[1]}`+")"
+}
+console.log(inventario)
 
 
 

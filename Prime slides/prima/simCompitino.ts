@@ -118,7 +118,44 @@ function confronta(a:[number,number],b:[number,number]):number{
 }
 
 
+//filtraCorso ESERCIZIO 6
+function filtraCorso(a:[string,number][],f:(a:number)=>boolean):[string,number][]{
+    let array: [string,number][] = []
+    let j: number = 0
+    for(let i: number = 0;i<a.length;i++){
+        if(matricolaValida(a[i][1])&&f(a[i][1])){
+            array[j] = a[i]
+            j++
+        }
+    }  
+    array.sort(confronto)
+    return array
+}
 
+function matricolaValida(n:number):boolean{
+    let valido:boolean 
+    if(String(n).length===6&&n>0){
+        valido = true
+    } else {
+        valido = false
+    }
+    return valido
+}
+
+function confronto(a:[string,number],b:[string,number]):number{
+    if(a[0]<b[0]){
+        return - 1
+    } else if(a[0] === b[0]){
+        return b[1] - a[1]
+    }
+    return 1
+}
+
+
+// ESERCIZIO 6: dronePiuVicino(a, p, epsilon)
+// Restituisce il drone (punto di a) con distanza Euclidea minima da p.
+// Due distanze d1, d2 sono considerate uguali se |d1 - d2| < epsilon.
+// A parità (entro la tolleranza) restituisce il primo punto dell'array.
 
 
 
