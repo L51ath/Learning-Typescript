@@ -381,3 +381,51 @@ test("raggruppaPerLunghezza([])", raggruppaPerLunghezza([]), {});
 
 
 
+
+
+
+// ---------------------------------------------------------------------------
+// ESERCIZIO 5 — Ruota l'array (manipolazione di array)
+// Restituisci un NUOVO array ruotato verso destra di `k` posizioni.
+// `k` può essere negativo (rotazione a sinistra) o maggiore della lunghezza.
+// Esempio: ruota([1,2,3,4,5], 2)  -> [4,5,1,2,3]
+//          ruota([1,2,3,4,5], -1) -> [2,3,4,5,1]
+// L'array originale non va modificato; array vuoto -> [].
+// ---------------------------------------------------------------------------
+function ruota(elementi: number[], k: number): number[] {
+    let a: number[] = []
+    for(let i:number = 0;i<elementi.length;i++){
+        let nuovaPos: number = cercPos(i,k,elementi)
+        a[nuovaPos] = elementi[i]
+    }
+    return a
+}  
+function cercPos(a:number,k:number,b:number[]):number{
+    let pos:number = a+k
+    if(k>=0){
+        if(pos>=b.length){
+            pos = (pos%b.length)
+        }
+    } else if(k<0){
+        if(pos<0){
+            if(pos%b.length===0){
+                pos = 0
+            } else {
+                pos = (pos%b.length)+b.length
+            }
+        } 
+        
+    }
+    return pos
+}
+// Test cases per ruota
+test("ruota([1, 2, 3, 4, 5], 2)", ruota([1, 2, 3, 4, 5], 2), [4, 5, 1, 2, 3]);
+test("ruota([1, 2, 3, 4, 5], -1)", ruota([1, 2, 3, 4, 5], -1), [2, 3, 4, 5, 1]);
+test("ruota([1, 2, 3, 4, 5], 7)", ruota([1, 2, 3, 4, 5], 7), [4, 5, 1, 2, 3]);
+test("ruota([1, 2, 3, 4, 5], 0)", ruota([1, 2, 3, 4, 5], 0), [1, 2, 3, 4, 5]);
+test("ruota([], 3)", ruota([], 3), []);
+{
+  const originale = [1, 2, 3];
+  ruota(originale, 1);
+  test("ruota non modifica l'array originale", originale, [1, 2, 3]);
+}
